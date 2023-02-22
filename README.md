@@ -20,9 +20,19 @@ The following grammar rules are currently possible to interpret:
 S  <- NP VP   # Nemo is a fish
 NP <- NNP     # Nemo
 NP <- DT NN   # a fish
+NP <- NN      # fish
 VP <- VBZ     # is
 VP <- VBZ NP  # is a fish
 ```
+
+### Determiner lexicon
+
+Since determiners are interpreted as quantifiers, we have to build a lexicon of determiners mapped to the desired quantifier. The following determiners are currently added:
+
+| Quantifier  | Mappings   |
+|-------------|------------|
+| Existential | A, an, the |
+| Universal   | Every      |
 
 ### Example
 
