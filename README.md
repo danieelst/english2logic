@@ -57,7 +57,7 @@ ROOT
             |
             `- fish
 
-∃x[(fish(x) ∧ is(x,Nemo))]
+∃x₀[(fish(x₀) ∧ is(x₀,Nemo))]
 ```
 
 ## Building

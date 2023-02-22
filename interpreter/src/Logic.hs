@@ -11,11 +11,28 @@ data Prop = Pred   Name [Ind] -- P(a,...,z)
           | ForAll Function   -- ∀x[...x...]
 
 instance Show Prop where
-  show (Pred name args) = name ++ (pth $ foldr1 (\a b -> a ++ "," ++ b) args)
-  show (Conj p1 p2)     = pth $ show p1 ++ " ∧ " ++ show p2
-  show (Impl p1 p2)     = pth $ show p1 ++ " → " ++ show p2
-  show (Exists f)       = "∃x" ++ (brkt $ show $ f ["x"])
-  show (ForAll f)       = "∀x" ++ (brkt $ show $ f ["x"])
+  show = prop2Str
+
+prop2Str :: Prop -> String
+prop2Str = p2S 0
+  where
+    p2S :: Int -> Prop -> String
+    p2S x (Pred name args) = name ++ (pth $ foldr1 (\a b -> a ++ "," ++ b) args)
+    p2S x (Conj p1 p2)     = pth $ p2S x p1 ++ " ∧ " ++ p2S x p2
+    p2S x (Impl p1 p2)     = pth $ p2S x p1 ++ " → " ++ p2S x p2
+    p2S x (Exists f)       = "∃" ++ var x ++ (brkt $ p2S (x+1) $ f [var x])
+    p2S x (ForAll f)       = "∀" ++ var x ++ (brkt $ p2S (x+1) $ f [var x])
+
+-- var 0 -> x₀, var 21 -> x₂₁
+var :: Int -> String
+var x = "x" ++ getSubscript x
+  where
+    getSubscript :: Int -> String
+    getSubscript i | i < 0     = ""
+                   | i < 10    = (subs !! i) : []
+                   | otherwise = getSubscript (i `div` 10) ++ getSubscript (i `mod` 10)
+    subs :: [Char]
+    subs = "₀₁₂₃₄₅₆₇₈₉"
 
 -- s -> (s)
 pth :: String -> String
