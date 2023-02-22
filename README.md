@@ -1,6 +1,6 @@
 # English to First-Order Logic
 
-Parsing English text as first-order logic according to Montague grammar.
+Parsing English text and interpreting it as first-order logic formulas in accordance to Montague grammar.
 
 ## Parser
 
@@ -10,18 +10,18 @@ For example, parsing `examples/nemo-is-a-fish.txt` outputs `examples/nemo-is-a-f
 
 ## Interpreter
 
-Interprets a constituency parse as first-order logic, using Montague grammar and Haskell.
+Interprets a constituency parse as a first-order logic formula, using Montague grammar and Haskell.
 
-### Current intrepretation rules
+### Current interpretation rules
 
 The following grammar rules are currently possible to interpret:
 
 ```
-S  <- NP VP
-NP <- NNP
-NP <- DT NN
-VP <- VBZ
-VP <- VBZ NP
+S  <- NP VP   # Nemo is a fish
+NP <- NNP     # Nemo
+NP <- DT NN   # a fish
+VP <- VBZ     # is
+VP <- VBZ NP  # is a fish
 ```
 
 ### Example
