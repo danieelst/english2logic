@@ -1,4 +1,4 @@
-# English to First-Order Logic
+# 🇬🇧 English to First-Order Logic 💫
 
 Parsing English text and interpreting it as first-order logic formulas in accordance to Montague grammar.
 
