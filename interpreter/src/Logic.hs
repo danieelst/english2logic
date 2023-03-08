@@ -5,6 +5,7 @@ type Ind  = String
 type Function = ([Ind] -> Prop)
 
 data Prop = Pred   Name [Ind] -- P(a,...,z)
+          | Neg    Prop       -- ¬ P
           | Conj   Prop Prop  -- P ∧ Q
           | Impl   Prop Prop  -- P → Q
           | Exists Function   -- ∃x[...x...]
@@ -18,6 +19,7 @@ prop2Str = p2S 0
   where
     p2S :: Int -> Prop -> String
     p2S x (Pred name args) = name ++ (pth $ foldr1 (\a b -> a ++ "," ++ b) args)
+    p2S x (Neg p)          = "¬" ++ (pth $ p2S x p)
     p2S x (Conj p1 p2)     = pth $ p2S x p1 ++ " ∧ " ++ p2S x p2
     p2S x (Impl p1 p2)     = pth $ p2S x p1 ++ " → " ++ p2S x p2
     p2S x (Exists f)       = "∃" ++ var x ++ (brkt $ p2S (x+1) $ f [var x])

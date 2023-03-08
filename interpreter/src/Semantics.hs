@@ -47,14 +47,16 @@ iNN2 (CategoryNode NN [] ts) = \p -> p <+ (iT $ fst ts)
 
 iDT :: GrammarTree -> (Function -> (Function -> Prop))
 iDT (CategoryNode DT [] ts) = case (Det.quantifier $ iT $ fst ts) of
-  Det.Exists -> \p q -> Exists (\x -> Conj (p x) (q x))
-  Det.ForAll -> \p q -> ForAll (\x -> Impl (p x) (q x))
+  Det.Exists    -> \p q -> Exists (\x -> Conj (p x) (q x))
+  Det.ForAll    -> \p q -> ForAll (\x -> Impl (p x) (q x))
+  Det.NegForAll -> \p q -> ForAll (\x -> Impl (p x) (Neg $ q x))
 
 -- Interpret a determiner used in a noun phrase in a verb phrase
 iDTNPVP :: GrammarTree -> (Function -> Function -> Function)
 iDTNPVP (CategoryNode DT [] ts) = case (Det.quantifier $ iT $ fst ts) of
-  Det.Exists -> \p q x -> Exists (\y -> Conj (p y) (q $ y ++ x))
-  Det.ForAll -> \p q x -> ForAll (\y -> Impl (p y) (q $ y ++ x))
+  Det.Exists    -> \p q x -> Exists (\y -> Conj (p y) (q $ y ++ x))
+  Det.ForAll    -> \p q x -> ForAll (\y -> Impl (p y) (q $ y ++ x))
+  Det.NegForAll -> \p q x -> ForAll (\y -> Impl (p x) (Neg $ q $ y ++ x))
 
 -- Interpret a verbalizer
 iVBZ :: GrammarTree -> Function

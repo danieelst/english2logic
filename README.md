@@ -29,12 +29,13 @@ VP <- VBZ NP  # is a fish
 
 Since determiners are interpreted as quantifiers, we have to build a lexicon of determiners mapped to the desired quantifier. The following determiners are currently added:
 
-| Quantifier  | Mappings   |
-|-------------|------------|
-| Existential | A, an, the |
-| Universal   | Every      |
+| Quantifier        | Mappings   |
+|-------------------|------------|
+| Existential       | A, an, the |
+| Universal         | Every      |
+| Negated universal | No         |
 
-### Example
+### Examples
 
 Interpreting `examples/nemo-is-a-fish.json` gives the following output:
 
@@ -68,6 +69,32 @@ ROOT
             `- fish
 
 ∃x₀[(fish(x₀) ∧ is(x₀,Nemo))]
+```
+
+Interpreting `examples/no-fish-walks.json` gives the following output:
+
+```
+ROOT
+|
+`- S
+   |
+   +- NP
+   |  |
+   |  +- DT
+   |  |  |
+   |  |  `- No
+   |  |
+   |  `- NN
+   |     |
+   |     `- fish
+   |
+   `- VP
+      |
+      `- VBZ
+         |
+         `- walks
+
+∀x₀[(fish(x₀) → ¬(walks(x₀)))]
 ```
 
 ## Building
