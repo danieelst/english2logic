@@ -74,6 +74,8 @@ ROOT
 Interpreting `examples/no-fish-walks.json` gives the following output:
 
 ```
+No fish walks.
+
 ROOT
 |
 `- S
