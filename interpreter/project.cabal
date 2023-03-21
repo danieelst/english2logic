@@ -8,7 +8,15 @@ executable eng2fol
                       GrammarTree,
                       Logic,
                       Determiners,
-                      Semantics
+                      Interpretation,
+                      Semantics.S,
+                      Semantics.NP,
+                      Semantics.NN,
+                      Semantics.NNP,
+                      Semantics.VP,
+                      Semantics.VBZ,
+                      Semantics.DT,
+                      Semantics.Util
     build-depends:    base ^>=4.16.3.0,
                       aeson,
                       bytestring,

@@ -6,7 +6,7 @@ import System.FilePath(isValid)
 
 import GrammarTree(ParseRecord(..),readJson,prettyPrint)
 
-import Semantics(interpret)
+import Interpretation(interpret)
 
 main :: IO ()
 main = do

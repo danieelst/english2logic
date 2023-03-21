@@ -1,15 +1,15 @@
-module Logic(Prop(..),Ind,Function) where
+module Logic(Prop(..),Ind,Predicate) where
 
 type Name = String
 type Ind  = String
-type Function = ([Ind] -> Prop)
+type Predicate = ([Ind] -> Prop)
 
 data Prop = Pred   Name [Ind] -- P(a,...,z)
           | Neg    Prop       -- ¬ P
           | Conj   Prop Prop  -- P ∧ Q
           | Impl   Prop Prop  -- P → Q
-          | Exists Function   -- ∃x[...x...]
-          | ForAll Function   -- ∀x[...x...]
+          | Exists Predicate   -- ∃x[...x...]
+          | ForAll Predicate   -- ∀x[...x...]
 
 instance Show Prop where
   show = prop2Str
@@ -36,10 +36,10 @@ var x = "x" ++ getSubscript x
     subs :: [Char]
     subs = "₀₁₂₃₄₅₆₇₈₉"
 
--- s -> (s)
+-- "s" -> "(s)"
 pth :: String -> String
 pth s = "(" ++ s ++ ")"
 
--- s -> [s]
+-- "s" -> "[s]"
 brkt :: String -> String
 brkt s = "[" ++ s ++ "]"
