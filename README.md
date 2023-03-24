@@ -4,9 +4,7 @@ Parsing English text and interpreting it as first-order logic formulas in accord
 
 ## Parser
 
-The parser performs a constituency parse on English text, using Stanza and Python. The output of the parse is provided as a JSON-file.
-
-For example, parsing `examples/nemo-is-a-fish.txt` outputs `examples/nemo-is-a-fish.json`.
+The parser performs a constituency parse on English text, using Stanza. The input should be a valid JSON-file, and the output will be written to the same file.
 
 ## Interpreter
 
@@ -105,4 +103,4 @@ Install all prerequisites and build the project using `install.sh`.
 
 ## Running
 
-Run the full program (parser and interpreter) with `run.sh`.
+Run the full program (parser and interpreter) with `run.sh path/to/json/file`.
