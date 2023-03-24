@@ -11,6 +11,18 @@ data Prop = Pred   Name [Ind] -- P(a,...,z)
           | Exists Predicate   -- ∃x[...x...]
           | ForAll Predicate   -- ∀x[...x...]
 
+instance Eq Prop where
+  (==) = \p q -> eqProp p q 0
+
+eqProp :: Prop -> Prop -> Int -> Bool
+eqProp (Pred n1 xs1) (Pred n2 xs2) _ = n1 == n2 && xs1 == xs2
+eqProp (Neg  p)      (Neg  q)      x = eqProp p q x
+eqProp (Conj p1 p2)  (Conj q1 q2)  x = eqProp p1 q1 x && eqProp p2 q2 x
+eqProp (Impl p1 p2)  (Impl q1 q2)  x = eqProp p1 q1 x && eqProp p2 q2 x
+eqProp (Exists f1)   (Exists f2)   x = eqProp (f1 [var x]) (f2 [var x]) (x+1)
+eqProp (ForAll f1)   (ForAll f2)   x = eqProp (f1 [var x]) (f2 [var x]) (x+1)
+eqProp _ _                         x = False
+
 instance Show Prop where
   show = prop2Str
 
