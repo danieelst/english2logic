@@ -1,6 +1,6 @@
 # 🇬🇧 English to First-Order Logic 💫
 
-Parsing English text and interpreting it as first-order logic formulas in accordance to Montague grammar.
+Parsing English text and interpreting it as first-order logic formulas in accordance to [Montague grammar](https://en.wikipedia.org/wiki/Montague_grammar).
 
 ## Parser
 
