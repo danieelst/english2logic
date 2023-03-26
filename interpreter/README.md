@@ -2,6 +2,27 @@
 
 Interprets constituency parses as first-order logic formulas, in accordance to Montague grammar.
 
+## Grammar trees
+
+A node can be one of two things:
+  * Lexical nodes: hold a word with no sub-trees
+  * Categorical nodes: hold a category, a list of sub-trees, and a list of categories corresponding to those of its direct sub-trees (useful for pattern rules)
+
+Thus, all leafs will be lexical and all inner nodes will be categorical.
+
+## First-order logic
+
+The following is the current logic implemented:
+
+| Identifier     | Symbolic    | Type                    | Constructor              |
+|----------------|-------------|-------------------------|--------------------------|
+| Predicates     | P(a,...,z)  | `Str -> [Str] -> Prop`  | `Pred "P" ["a",...,"z"]` |
+| Negation       | ¬(Q)        | `Prop -> Prop`          | `Neg Q`                  |
+| Conjunction    | (Q ∧ R)     | `Prop -> Prop -> Prop`  | `Conj Q R`               |
+| Implication    | (Q → R)     | `Prop -> Prop -> Prop`  | `Impl Q R`               |
+| Existential q. | ∃x[...x...] | `(Str -> Prop) -> Prop` | `Exists (\x -> ...x...)` |
+| Universal q.   | ∀x[...x...] | `(Str -> Prop) -> Prop` | `ForAll (\x -> ...x...)` |
+
 ## Requirements
 
 Cabal is installed and can be found with the command `cabal`.

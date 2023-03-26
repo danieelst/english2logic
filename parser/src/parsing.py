@@ -20,7 +20,7 @@ def remove_punctuation(tree):
   return ParseTree(tree.label, [remove_punctuation(child)
                                 for child
                                 in tree.children
-                                if child.label != '.'])
+                                if child.label != '.' and child.label != ','])
 
 # Turn a tree structure into a Python dictionary
 def tree_to_dict(tree):

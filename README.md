@@ -14,14 +14,14 @@ Interprets a constituency parse as a first-order logic formula, using Montague g
 
 The following grammar rules are currently possible to interpret:
 
-```
-S  <- NP VP   # Nemo is a fish
-NP <- NNP     # Nemo
-NP <- DT NN   # a fish
-NP <- NN      # fish
-VP <- VBZ     # is
-VP <- VBZ NP  # is a fish
-```
+| Category | Grammar rule   | Example        |
+|----------|----------------|----------------|
+| S        | NP VP          | Nemo is a fish |
+| NP       | NNP            | Nemo           |
+| NP       | DT NN          | a fish         |
+| NP       | NN             | fish           |
+| VP       | VBZ            | swims          |
+| VP       | VBZ NP         | is a fish      |
 
 ### Determiner lexicon
 
