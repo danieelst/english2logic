@@ -1,4 +1,4 @@
-module LogicTest where
+module LogicTest(test) where
 
 import Logic(Prop,parse)
 import Test.QuickCheck(quickCheck)

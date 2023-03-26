@@ -1,5 +1,6 @@
 module Logic(Prop(..),Ind,Predicate,parse) where
 
+import Data.List.Split(splitOn)
 import Test.QuickCheck
 
 type Name = String
@@ -100,7 +101,7 @@ parsePred s = Pred name xs
   where
     name = takeWhile (/= '(') s
     argList = drop (length name) s
-    xs = split $ init $ tail argList
+    xs = splitOn "," $ init $ tail argList
 
 parseQuantifier :: String -> (Ind -> Prop)
 parseQuantifier s = \x -> parse s''
@@ -118,14 +119,6 @@ parseQuantifier s = \x -> parse s''
                                              (replaceInd p2 old new)
     replaceInd (Exists f)     old new = Exists $ \x -> replaceInd (f x) old new
     replaceInd (ForAll f)     old new = ForAll $ \x -> replaceInd (f x) old new
-
--- "x,y,z" -> ["x","y","z"]
-split :: String -> [String]
-split s = case dropWhile (== ',') s of
-            "" -> []
-            s' -> w : split s''
-              where
-                (w, s'') = break (== ',') s'
 
 -- QuickCheck
 genName :: Gen Name

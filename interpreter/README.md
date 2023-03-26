@@ -14,6 +14,6 @@ Run with `cabal run eng2fol-interpreter -- path/to/parser/output/file`, where `p
 
 ## Testing
 
-The test suite simply checks that all examples from `/examples` are interpreted as valid first-order propositional formulas (i.e. without any errors happening).
+The test suite simply checks that all examples from `/examples` are interpreted as valid first-order propositional formulas (i.e. without any errors happening) and that the QuickCheck properties of the logic holds.
 
 Run the tests with `cabal test --test-show-details=direct --verbose=0`.

@@ -25,7 +25,8 @@ library
                     bytestring,
                     containers,
                     utf8-string,
-                    QuickCheck
+                    QuickCheck,
+                    split
   hs-source-dirs:   src
 
 executable eng2fol-interpreter
