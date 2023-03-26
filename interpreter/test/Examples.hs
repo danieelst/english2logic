@@ -1,4 +1,4 @@
-module Examples where
+module Examples(test) where
 
 import System.Exit(exitFailure,exitSuccess)
 import System.Directory(getDirectoryContents)
@@ -17,8 +17,9 @@ jsonExt = ".json"
 pathToExamples :: FilePath
 pathToExamples = "../examples/"
 
-main :: IO ()
-main = do
+test :: IO ()
+test = do
+  putStrLn "Testing examples"
   files <- getDirectoryContents pathToExamples
   let jsonFiles = map (\f -> joinPath [pathToExamples,f]) (filter isJson files)
   cs@(Counts _ _ errs fails) <- runTestTT $ TestList $ map makeTest jsonFiles

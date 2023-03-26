@@ -21,7 +21,7 @@ determiners = Map.fromList
    ("every", ForAll   ),
    ("no"   , NegForAll)]
 
-toLogic :: Quantifier -> (([Logic.Ind] -> Logic.Prop) -> Logic.Prop)
+toLogic :: Quantifier -> ((Logic.Ind -> Logic.Prop) -> Logic.Prop)
 toLogic (Exists) = \f -> Logic.Exists f
 toLogic (ForAll) = \f -> Logic.ForAll f
 

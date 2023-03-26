@@ -24,7 +24,8 @@ library
   build-depends:    aeson,
                     bytestring,
                     containers,
-                    utf8-string
+                    utf8-string,
+                    QuickCheck
   hs-source-dirs:   src
 
 executable eng2fol-interpreter
@@ -36,11 +37,13 @@ executable eng2fol-interpreter
 
 test-suite examples
   import:           shared-properties
-  main-is:          Examples.hs
-  ghc-options:      -main-is Examples
+  main-is:          Main.hs
+  other-modules:    Examples,
+                    LogicTest
   build-depends:    HUnit,
                     directory,
                     filepath,
+                    QuickCheck,
                     eng2fol-interpreter
   hs-source-dirs:   test
   type:             exitcode-stdio-1.0
