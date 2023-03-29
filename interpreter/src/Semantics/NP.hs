@@ -3,7 +3,7 @@ module Semantics.NP where
 import Grammar
 import GrammarTree
 import Semantics.Util
-import Logic
+import Logic.Prop
 
 import qualified Semantics.NNP as NNP
 import qualified Semantics.NN as NN

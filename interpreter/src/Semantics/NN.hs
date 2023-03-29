@@ -3,7 +3,7 @@ module Semantics.NN where
 import Grammar
 import GrammarTree
 import Semantics.Util
-import Logic
+import Logic.Prop
 
 -- Interpret a common noun as a predicate
 i :: GrammarTree -> Predicate

@@ -1,6 +1,6 @@
 module Determiners(quantifier,Quantifier(..)) where
 
-import qualified Logic as Logic
+import qualified Logic.Prop as Logic
 
 import Data.Char(toLower)
 import Data.Map(Map)

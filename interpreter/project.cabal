@@ -10,7 +10,9 @@ library
   import:           shared-properties
   exposed-modules:  Grammar
                     GrammarTree,
-                    Logic,
+                    Logic.Prop,
+                    Logic.Parser,
+                    Logic.Gen,
                     Determiners,
                     Interpretation,
                     Semantics.S,

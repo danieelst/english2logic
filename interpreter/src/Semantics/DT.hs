@@ -3,7 +3,7 @@ module Semantics.DT where
 import Grammar
 import GrammarTree
 import Semantics.Util
-import Logic
+import Logic.Prop
 
 import qualified Determiners as Det
 

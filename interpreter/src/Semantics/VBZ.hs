@@ -3,7 +3,7 @@ module Semantics.VBZ where
 import Grammar
 import GrammarTree
 import Semantics.Util
-import Logic
+import Logic.Prop
 
 -- Interpret a verbalizer as a predicate
 i :: GrammarTree -> Predicate

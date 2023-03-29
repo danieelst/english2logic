@@ -1,6 +1,6 @@
 module Semantics.Util where
 
-import Logic
+import Logic.Prop
 import GrammarTree(GrammarTree(LexemeNode))
 
 -- First projection

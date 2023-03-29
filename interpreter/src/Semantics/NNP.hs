@@ -3,7 +3,7 @@ module Semantics.NNP where
 import Grammar
 import GrammarTree
 import Semantics.Util
-import Logic
+import Logic.Prop
 
 -- Interpret a proper noun as a higher-order proposition
 i :: GrammarTree -> (Predicate -> Prop)
