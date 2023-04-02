@@ -1,0 +1,46 @@
+{
+  "text": "Nemo swims.",
+  "grammar": [
+    {
+      "node": "ROOT",
+      "children": [
+        {
+          "node": "S",
+          "children": [
+            {
+              "node": "NP",
+              "children": [
+                {
+                  "node": "NNP",
+                  "children": [
+                    {
+                      "node": "Nemo",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "node": "VP",
+              "children": [
+                {
+                  "node": "VBZ",
+                  "children": [
+                    {
+                      "node": "swims",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "logic": [
+    "swims(\"Nemo\")"
+  ]
+}

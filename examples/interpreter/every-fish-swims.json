@@ -1,0 +1,55 @@
+{
+  "text": "Every fish swims.",
+  "grammar": [
+    {
+      "node": "ROOT",
+      "children": [
+        {
+          "node": "S",
+          "children": [
+            {
+              "node": "NP",
+              "children": [
+                {
+                  "node": "DT",
+                  "children": [
+                    {
+                      "node": "Every",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "node": "NN",
+                  "children": [
+                    {
+                      "node": "fish",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "node": "VP",
+              "children": [
+                {
+                  "node": "VBZ",
+                  "children": [
+                    {
+                      "node": "swims",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "logic": [
+    "∀x₀[(fish(x₀) → swims(x₀))]"
+  ]
+}

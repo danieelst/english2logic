@@ -1,0 +1,55 @@
+{
+  "text": "No fish walks.",
+  "grammar": [
+    {
+      "node": "ROOT",
+      "children": [
+        {
+          "node": "S",
+          "children": [
+            {
+              "node": "NP",
+              "children": [
+                {
+                  "node": "DT",
+                  "children": [
+                    {
+                      "node": "No",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "node": "NN",
+                  "children": [
+                    {
+                      "node": "fish",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "node": "VP",
+              "children": [
+                {
+                  "node": "VBZ",
+                  "children": [
+                    {
+                      "node": "walks",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "logic": [
+    "∀x₀[(fish(x₀) → ¬(walks(x₀)))]"
+  ]
+}

@@ -35,7 +35,7 @@ Since determiners are interpreted as quantifiers, we have to build a lexicon of 
 
 ### Examples
 
-Interpreting `examples/nemo-is-a-fish.json` gives the following output:
+Interpreting `examples/parser/nemo-is-a-fish.json` gives the following output:
 
 ```
 Nemo is a fish.
@@ -66,10 +66,10 @@ ROOT
             |
             `- fish
 
-∃x₀[(fish(x₀) ∧ is(x₀,Nemo))]
+∃x₀[(fish(x₀) ∧ is(x₀,"Nemo"))]
 ```
 
-Interpreting `examples/no-fish-walks.json` gives the following output:
+Interpreting `examples/parser/no-fish-walks.json` gives the following output:
 
 ```
 No fish walks.

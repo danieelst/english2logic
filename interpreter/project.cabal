@@ -10,6 +10,7 @@ library
   import:           shared-properties
   exposed-modules:  Grammar
                     GrammarTree,
+                    IO,
                     Logic.Prop,
                     Logic.Parser,
                     Logic.Gen,
@@ -23,7 +24,9 @@ library
                     Semantics.VBZ,
                     Semantics.DT,
                     Semantics.Util
-  build-depends:    aeson,
+  build-depends:    filepath,
+                    aeson,
+                    aeson-pretty,
                     bytestring,
                     containers,
                     utf8-string,
@@ -34,8 +37,8 @@ library
 executable eng2fol-interpreter
   import:           shared-properties
   main-is:          Main.hs
-  build-depends:    eng2fol-interpreter,
-                    filepath
+  build-depends:    filepath,
+                    eng2fol-interpreter
   hs-source-dirs:   app
 
 test-suite examples

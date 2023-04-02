@@ -1,0 +1,60 @@
+{
+  "text": "Nemo swims home.",
+  "grammar": [
+    {
+      "node": "ROOT",
+      "children": [
+        {
+          "node": "S",
+          "children": [
+            {
+              "node": "NP",
+              "children": [
+                {
+                  "node": "NNP",
+                  "children": [
+                    {
+                      "node": "Nemo",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "node": "VP",
+              "children": [
+                {
+                  "node": "VBZ",
+                  "children": [
+                    {
+                      "node": "swims",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "node": "NP",
+                  "children": [
+                    {
+                      "node": "NN",
+                      "children": [
+                        {
+                          "node": "home",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "logic": [
+    "swims(\"Nemo\",\"home\")"
+  ]
+}

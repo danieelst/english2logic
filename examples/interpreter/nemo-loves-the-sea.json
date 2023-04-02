@@ -1,0 +1,69 @@
+{
+  "text": "Nemo loves the sea.",
+  "grammar": [
+    {
+      "node": "ROOT",
+      "children": [
+        {
+          "node": "S",
+          "children": [
+            {
+              "node": "NP",
+              "children": [
+                {
+                  "node": "NNP",
+                  "children": [
+                    {
+                      "node": "Nemo",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "node": "VP",
+              "children": [
+                {
+                  "node": "VBZ",
+                  "children": [
+                    {
+                      "node": "loves",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "node": "NP",
+                  "children": [
+                    {
+                      "node": "DT",
+                      "children": [
+                        {
+                          "node": "the",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "node": "NN",
+                      "children": [
+                        {
+                          "node": "sea",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "logic": [
+    "∃x₀[(sea(x₀) ∧ loves(x₀,\"Nemo\"))]"
+  ]
+}

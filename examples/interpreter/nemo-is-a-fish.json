@@ -1,0 +1,69 @@
+{
+  "text": "Nemo is a fish.",
+  "grammar": [
+    {
+      "node": "ROOT",
+      "children": [
+        {
+          "node": "S",
+          "children": [
+            {
+              "node": "NP",
+              "children": [
+                {
+                  "node": "NNP",
+                  "children": [
+                    {
+                      "node": "Nemo",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "node": "VP",
+              "children": [
+                {
+                  "node": "VBZ",
+                  "children": [
+                    {
+                      "node": "is",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "node": "NP",
+                  "children": [
+                    {
+                      "node": "DT",
+                      "children": [
+                        {
+                          "node": "a",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "node": "NN",
+                      "children": [
+                        {
+                          "node": "fish",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "logic": [
+    "∃x₀[(fish(x₀) ∧ is(x₀,\"Nemo\"))]"
+  ]
+}

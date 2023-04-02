@@ -1,21 +1,25 @@
 module Examples(test) where
 
+import Prelude hiding (read)
+
 import System.Exit(exitFailure,exitSuccess)
 import System.Directory(getDirectoryContents)
 import System.FilePath(joinPath)
 
 import Data.Maybe(isJust,fromJust)
 
-import Test.HUnit(Test(TestCase,TestList),Counts(..),assertBool,runTestTT,showCounts)
+import Test.HUnit(Test(TestCase,TestList),Counts(..)
+                 ,assertBool,runTestTT,showCounts)
 
-import GrammarTree(readJson,output)
+import IO(OutputRecord(..),read)
+import Logic.Parser(parse)
 import Interpretation(interpret)
 
 jsonExt :: String
 jsonExt = ".json"
 
 pathToExamples :: FilePath
-pathToExamples = "../examples/"
+pathToExamples = "../examples/interpreter/"
 
 test :: IO ()
 test = do
@@ -33,10 +37,10 @@ isJson fp = (drop (length fp - length jsonExt) fp) == jsonExt
 makeTest :: FilePath -> Test
 makeTest fp = TestCase $ do
   putStrLn $ "\n\nTesting " ++ fp
-  text <- readFile fp
-  let parseRecord = readJson text
-  assertBool "Invalid file" (isJust parseRecord)
-  let ps = map interpret $ output $ fromJust parseRecord
-  -- The print is mostly to force the otherwise lazy interpretation to complete
+  outputRecord <- read fp
+  let ps  = map parse $ logic outputRecord
+  let ps' = map interpret $ grammar outputRecord
   sequence_ $ map (putStrLn . (\s -> "  >> " ++ s) . show) ps
+  sequence_ $ map (putStrLn . (\s -> "  == " ++ s) . show) ps'
+  assertBool "Incorrect interpretation(s)" (ps == ps')
   putStrLn ""
