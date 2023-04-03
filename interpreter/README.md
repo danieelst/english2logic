@@ -35,6 +35,6 @@ Run with `cabal run eng2fol-interpreter -- path/to/parser/output/file`, where `p
 
 ## Testing
 
-The test suite simply checks that all examples from `/examples/interpreter` are interpreted as the documented formulas.
+The test suite simply checks that all examples from `/examples/interpreter` are interpreted as the documented formulas and that the logic QuickCheck properties hold.
 
 Run the tests with `cabal test --test-show-details=direct --verbose=0`.
