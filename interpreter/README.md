@@ -2,6 +2,16 @@
 
 Interprets constituency parses as first-order logic formulas, in accordance to Montague grammar.
 
+The results of the interpretation of file `path/to/file.json` will be written to `path/to/_file.json`, with the following contents:
+
+```
+{
+  "text": <<input text>>,
+  "grammar": <<grammar trees>>,
+  "logic": <<interpretations>>
+}
+```
+
 ## Grammar trees
 
 A node can be one of two things:
