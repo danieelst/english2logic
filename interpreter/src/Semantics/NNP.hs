@@ -8,3 +8,6 @@ import Logic.Prop
 -- Interpret a proper noun as a higher-order proposition
 i :: GrammarTree -> (Predicate -> Prop)
 i (CategoryNode NNP [] ts) = \p -> p $ [word $ p1 ts]
+
+patterns :: [[Category]]
+patterns = []

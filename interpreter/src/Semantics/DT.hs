@@ -21,3 +21,6 @@ i2 (CategoryNode DT [] ts) = case (Det.quantifier $ word $ p1 ts) of
   Det.Exists    -> \p q x -> Exists (\y -> Conj (p [y]) (      q $ y:x))
   Det.ForAll    -> \p q x -> ForAll (\y -> Impl (p [y]) (      q $ y:x))
   Det.NegForAll -> \p q x -> ForAll (\y -> Impl (p [y]) (Neg $ q $ y:x))
+
+patterns :: [[Category]]
+patterns = []

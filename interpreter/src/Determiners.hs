@@ -1,4 +1,4 @@
-module Determiners(quantifier,Quantifier(..)) where
+module Determiners(quantifier,Quantifier(..),table) where
 
 import qualified Logic.Prop as Logic
 
@@ -10,16 +10,24 @@ import qualified Data.Map as Map
 data Quantifier = Exists    -- Existential
                 | ForAll    -- Universal
                 | NegForAll -- Negated universal quantification
-  deriving (Show,Eq)
+  deriving (Eq)
+
+instance Show Quantifier where
+  show qtf = case qtf of
+    Exists    -> "Existential"
+    ForAll    -> "Universal"
+    NegForAll -> "Negated universal"
 
 -- A simple lexicon mapping determiners to quantifiers
 determiners :: Map String Quantifier
-determiners = Map.fromList
-  [("a"    , Exists   ),
-   ("an"   , Exists   ),
-   ("the"  , Exists   ),
-   ("every", ForAll   ),
-   ("no"   , NegForAll)]
+determiners = Map.fromList table
+
+table :: [(String,Quantifier)]
+table = [("a"    , Exists   ),
+         ("an"   , Exists   ),
+         ("the"  , Exists   ),
+         ("every", ForAll   ),
+         ("no"   , NegForAll)]
 
 toLogic :: Quantifier -> ((Logic.Ind -> Logic.Prop) -> Logic.Prop)
 toLogic (Exists) = \f -> Logic.Exists f
@@ -27,4 +35,3 @@ toLogic (ForAll) = \f -> Logic.ForAll f
 
 quantifier :: String -> Quantifier
 quantifier determiner = determiners Map.! (map toLower determiner)
-

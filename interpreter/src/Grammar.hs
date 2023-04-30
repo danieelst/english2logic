@@ -1,4 +1,4 @@
-module Grammar(Category(..),fromString) where
+module Grammar(Category(..),fromString,getAllCategories) where
 
 -------------------------------------------------------------------------------
 -- Define the grammatical categories

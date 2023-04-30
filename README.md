@@ -1,39 +1,28 @@
 # 🇬🇧 English to First-Order Logic 💫
 
-Parsing English text and interpreting it as first-order logic formulas in accordance to [Montague grammar](https://en.wikipedia.org/wiki/Montague_grammar).
+Parsing English text and interpreting it as first-order logic formulas can be done in accordance to [Montague grammar](https://en.wikipedia.org/wiki/Montague_grammar) using [Stanza](https://stanfordnlp.github.io/stanza/).
+
+Consider the following examples of interpretations á la Montague grammar:
+
+| Text           | Category | Constituents | Interpretation                    |
+|----------------|----------|--------------|-----------------------------------|
+| Nemo is a fish | `S`      | `NP` `VP`    | `∃x₀[(fish(x₀) ∧ is(x₀,"Nemo"))]` |
+| Nemo           | `NP`     | `NNP`        | `λP → P("Nemo")`                  |
+| is a fish      | `VP`     | `VBZ` `NP`   | `λx → ∃x₀[fish(x₀) ∧ is(x₀,x)]`   |
+| is             | `VBZ`    |              | `λx → is(x)`                      |
+| a fish         | `NP`     | `DT` `NN`    | `λQ λx → ∃x₀[fish(x₀) ∧ Q(x₀,x)]` |
+| a              | `DT`     |              | `λP λQ λx → ∃x₀[P(x₀) ∧ Q(x₀,x)]` |
+| fish           | `NN`     |              | `λx → fish(x)`                    |
 
 ## Parser
 
-The parser performs a constituency parse on English text, using Stanza. The input should be a valid JSON-file, and the output will be written to the same file.
+We can use Stanza's constituency parser to acquire the constituents of the provided text. The resulting grammar tree can be used for interpretation. See `/parser` for more information about the parser.
 
 ## Interpreter
 
-Interprets a constituency parse as a first-order logic formula, using Montague grammar and Haskell.
+The interpreter implements interpretation rules in accordance to Montague grammar. See `GRAMMAR.md` for an account of the currently available categories and interpretation rules. See `/interpreter` for more information about the interpreter.
 
-### Current interpretation rules
-
-The following grammar rules are currently possible to interpret:
-
-| Category | Grammar rule   | Example        |
-|----------|----------------|----------------|
-| S        | NP VP          | Nemo is a fish |
-| NP       | NNP            | Nemo           |
-| NP       | DT NN          | a fish         |
-| NP       | NN             | fish           |
-| VP       | VBZ            | swims          |
-| VP       | VBZ NP         | is a fish      |
-
-### Determiner lexicon
-
-Since determiners are interpreted as quantifiers, we have to build a lexicon of determiners mapped to the desired quantifier. The following determiners are currently added:
-
-| Quantifier        | Mappings   |
-|-------------------|------------|
-| Existential       | A, an, the |
-| Universal         | Every      |
-| Negated universal | No         |
-
-### Examples
+## Examples
 
 Interpreting `examples/parser/nemo-is-a-fish.json` gives the following output:
 
