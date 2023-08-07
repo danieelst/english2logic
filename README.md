@@ -96,6 +96,6 @@ Run the full program (parser and interpreter) with `run.sh path/to/json/file`.
 
 ## Using the container
 
-Build the image with `docker build -t english2logic .`. (Takes around 40 minutes.)
+Build the image with `docker build -t english2logic:latest .`. (Takes around 40 minutes.)
 
 Then run a container using `docker run -it -v .:/english2logic english2logic`. You can skip the `-v` if you want to run the container in isolation.

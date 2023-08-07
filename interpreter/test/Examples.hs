@@ -27,12 +27,12 @@ test = do
   files <- getDirectoryContents pathToExamples
   let jsonFiles = map (\f -> joinPath [pathToExamples,f]) (filter isJson files)
   cs@(Counts _ _ errs fails) <- runTestTT $ TestList $ map makeTest jsonFiles
-  if (errs > 0 || fails > 0)
+  if errs > 0 || fails > 0
     then exitFailure
     else exitSuccess
 
 isJson :: FilePath -> Bool
-isJson fp = (drop (length fp - length jsonExt) fp) == jsonExt
+isJson fp = drop (length fp - length jsonExt) fp == jsonExt
 
 makeTest :: FilePath -> Test
 makeTest fp = TestCase $ do
@@ -40,7 +40,7 @@ makeTest fp = TestCase $ do
   outputRecord <- read fp
   let ps  = map parse $ logic outputRecord
   let ps' = map interpret $ grammar outputRecord
-  sequence_ $ map (putStrLn . (\s -> "  >> " ++ s) . show) ps
-  sequence_ $ map (putStrLn . (\s -> "  == " ++ s) . show) ps'
+  mapM_ (putStrLn . ("  >> " ++) . show) ps
+  mapM_ (putStrLn . ("  == " ++) . show) ps'
   assertBool "Incorrect interpretation(s)" (ps == ps')
   putStrLn ""

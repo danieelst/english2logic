@@ -75,8 +75,8 @@ getCats []                            = []
 
 toRecord :: GrammarTree -> GrammarTreeRecord
 toRecord (LexemeNode w)             = Obj{node=w,children=[]}
-toRecord (CategoryNode cat _ nodes) = Obj{node=(show cat),
-                                          children=(map toRecord nodes)}
+toRecord (CategoryNode cat _ nodes) = Obj{node=show cat,
+                                          children=map toRecord nodes}
 
 instance FromJSON GrammarTreeRecord
 instance FromJSON GrammarTree where

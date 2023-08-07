@@ -30,8 +30,8 @@ table = [("a"    , Exists   ),
          ("no"   , NegForAll)]
 
 toLogic :: Quantifier -> ((Logic.Ind -> Logic.Prop) -> Logic.Prop)
-toLogic (Exists) = \f -> Logic.Exists f
-toLogic (ForAll) = \f -> Logic.ForAll f
+toLogic Exists = Logic.Exists
+toLogic ForAll = Logic.ForAll
 
 quantifier :: String -> Quantifier
-quantifier determiner = determiners Map.! (map toLower determiner)
+quantifier determiner = determiners Map.! map toLower determiner

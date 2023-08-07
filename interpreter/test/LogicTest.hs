@@ -29,6 +29,6 @@ prop_ExcessSpacingIsOK :: Prop -> Int -> Bool
 prop_ExcessSpacingIsOK p n = p == parse s'
   where
     s = show p
-    idx = n `mod` (length s)
+    idx = n `mod` length s
     (lh,rh) = splitAt idx s
     s' = lh ++ " " ++ rh

@@ -1,7 +1,7 @@
 module Main where
 
-import qualified Examples as Examples
-import qualified LogicTest as LogicTest
+import qualified Examples
+import qualified LogicTest
 
 main :: IO ()
 main = do

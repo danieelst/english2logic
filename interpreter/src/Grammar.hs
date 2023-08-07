@@ -26,7 +26,7 @@ getAllCategories = enumFrom minBound
 
 -- Translate from string to a label
 fromString :: String -> Category
-fromString s | (length l) == 1 = head l
-             | otherwise       = error $ "No defined category " ++ s
+fromString s | length l == 1 = head l
+             | otherwise     = error $ "No defined category " ++ s
   where
     l = [cat | cat <- getAllCategories, s == show cat]

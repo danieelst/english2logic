@@ -7,11 +7,11 @@ import Data.List.Split(splitOn)
 -- Parse a string of symbols into a proposition (if valid)
 parse :: String -> Prop
 parse s = let s' = removeSpaces s in case head s' of
-  '¬'       -> Neg    $ parse $ init $ tail $ tail s'
-  '∃'       -> Exists $ parseQuantifier s'
-  '∀'       -> ForAll $ parseQuantifier s'
-  '('       -> parseConn $ init $ tail s'
-  otherwise -> parsePred s'
+  '¬' -> Neg    $ parse $ init $ tail $ tail s'
+  '∃' -> Exists $ parseQuantifier s'
+  '∀' -> ForAll $ parseQuantifier s'
+  '(' -> parseConn $ init $ tail s'
+  _   -> parsePred s'
 
 -- Given a stringified proposition, remove all non-individual spacing
 removeSpaces :: String -> String
@@ -28,11 +28,11 @@ markIndividualSpacing s = markIndividualSpacing' s False
   where
     markIndividualSpacing' :: String -> Bool -> String
     markIndividualSpacing' (c:s) quoted = case c of
-      '\"'      -> if quoted then  c  : markIndividualSpacing' s False
-                             else  c  : markIndividualSpacing' s True
-      ' '       -> if quoted then '_' : markIndividualSpacing' s quoted
-                             else       markIndividualSpacing' s quoted
-      otherwise -> c : markIndividualSpacing' s quoted
+      '\"' -> if quoted then  c  : markIndividualSpacing' s False
+                        else  c  : markIndividualSpacing' s True
+      ' '  -> if quoted then '_' : markIndividualSpacing' s quoted
+                        else       markIndividualSpacing' s quoted
+      _    -> c : markIndividualSpacing' s quoted
     markIndividualSpacing' []    _      = []
 
 parseConn :: String -> Prop
@@ -55,11 +55,11 @@ takePth s = takePth' ("",s) (0,0)
     takePth' :: (String,String) -> (Int,Int) -> (String,String)
     takePth' (sl,sr) (l,r) | l == r && (l+r) > 0 = (sl,sr)
                            | otherwise           = case head sr of
-      '('       -> takePth' (sl ++ "("          , tail sr) (l+1 ,   r)
-      ')'       -> takePth' (sl ++ ")"          , tail sr) (l   , r+1)
-      '['       -> takePth' (sl ++ "["          , tail sr) (l+1 ,   r)
-      ']'       -> takePth' (sl ++ "]"          , tail sr) (l   , r+1)
-      otherwise -> takePth' (sl ++ (head sr:[]) , tail sr) (l   ,   r)
+      '(' -> takePth' (sl ++ "("       , tail sr) (l+1 ,   r)
+      ')' -> takePth' (sl ++ ")"       , tail sr) (l   , r+1)
+      '[' -> takePth' (sl ++ "["       , tail sr) (l+1 ,   r)
+      ']' -> takePth' (sl ++ "]"       , tail sr) (l   , r+1)
+      _   -> takePth' (sl ++ [head sr] , tail sr) (l   ,   r)
 
 -- "P("x","y","z")" -> Pred "P" ["x","y","z"]
 parsePred :: String -> Prop

@@ -35,9 +35,9 @@ ending = "\n*This is a generated file.*\n"
 ruleToText :: Category -> [Category] -> String
 ruleToText _   []   = ""
 ruleToText cat cats = "| "
-                    ++ (show cat)
+                    ++ show cat
                     ++ " | "
-                    ++ (tail $ concat $ map (\c -> " " ++ show c) cats)
+                    ++ (tail $ concatMap (\c -> " " ++ show c) cats)
                     ++ " |"
 
 rulesToText :: Category -> [[Category]] -> String
@@ -46,7 +46,7 @@ rulesToText cat (cs:css) = ruleToText cat cs ++ "\n" ++ rulesToText cat css
 
 main :: IO ()
 main = do
-  let cats = (concat $ map (\c -> " * " ++ show c ++ "\n") getAllCategories) ++ "\n"
+  let cats = concatMap (\c -> " * " ++ show c ++ "\n") getAllCategories ++ "\n"
   let patterns = rulesToText S   S.patterns
               ++ rulesToText NP  NP.patterns
               ++ rulesToText NNP NNP.patterns
@@ -55,7 +55,7 @@ main = do
               ++ rulesToText VBZ VBZ.patterns
               ++ rulesToText DT  DT.patterns
               ++ "\n"
-  let dets = (concat $ map (\(d,q) -> "|" ++ d ++ "|" ++ show q ++ "|\n") table)
+  let dets = concatMap (\(d,q) -> "|" ++ d ++ "|" ++ show q ++ "|\n") table
   putStrLn $ "Generating " ++ pathToFile
   writeFile pathToFile $ header ++ catHeader ++ cats
                                 ++ rulesHeader ++ patterns

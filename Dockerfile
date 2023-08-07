@@ -20,6 +20,8 @@ RUN apt-get -y update \
 RUN curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 ENV PATH=${PATH}:/root/.ghcup/bin
 RUN ghcup install ghc && ghcup install cabal
+ENV PATH=${PATH}:/root/.cabal/bin
+RUN cabal install hlint
 
 # Need to explicitly set to UTF-8 to write logic symbols to stdout
 ENV LANG=C.UTF-8

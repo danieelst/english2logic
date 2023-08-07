@@ -7,7 +7,7 @@ import Logic.Prop
 
 -- Interpret a verbalizer as a predicate
 i :: GrammarTree -> Predicate
-i (CategoryNode VBZ [] ts) = \x -> Pred (word $ p1 ts) x
+i (CategoryNode VBZ [] ts) = Pred (word $ p1 ts)
 
 patterns :: [[Category]]
 patterns = []

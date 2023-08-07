@@ -12,7 +12,7 @@ data Prop = Pred   Name [Ind]    -- P(a,...,z)
           | ForAll (Ind -> Prop) -- ∀x[...x...]
 
 instance Eq Prop where
-  (==) = \p q -> eqProp p q 0
+  (==) p q = eqProp p q 0
 
 eqProp :: Prop -> Prop -> Int -> Bool
 eqProp (Pred n1 xs1) (Pred n2 xs2) _ = n1 == n2 && xs1 == xs2
@@ -30,15 +30,15 @@ prop2Str :: Prop -> String
 prop2Str = p2S 0
   where
     p2S :: Int -> Prop -> String
-    p2S x (Pred name args) = name ++ (pth $ foldr1 (\a b -> a ++ "," ++ b)
-                                          $ map (\x -> if isVar x
-                                                         then x
-                                                         else quote x) args)
-    p2S x (Neg p)          = "¬" ++ (pth $ p2S x p)
+    p2S x (Pred name args) = name ++ pth (foldr1 (\a b -> a ++ "," ++ b)
+                                         $ map (\x -> if isVar x
+                                                        then x
+                                                        else quote x) args)
+    p2S x (Neg p)          = "¬" ++ pth (p2S x p)
     p2S x (Conj p1 p2)     = pth $ p2S x p1 ++ " ∧ " ++ p2S x p2
     p2S x (Impl p1 p2)     = pth $ p2S x p1 ++ " → " ++ p2S x p2
-    p2S x (Exists f)       = "∃" ++ var x ++ (brkt $ p2S (x+1) $ f $ var x)
-    p2S x (ForAll f)       = "∀" ++ var x ++ (brkt $ p2S (x+1) $ f $ var x)
+    p2S x (Exists f)       = "∃" ++ var x ++ brkt (p2S (x+1) $ f $ var x)
+    p2S x (ForAll f)       = "∀" ++ var x ++ brkt (p2S (x+1) $ f $ var x)
 
 subs :: [Char]
 subs = "₀₁₂₃₄₅₆₇₈₉"
@@ -49,7 +49,7 @@ var x = "x" ++ getSubscript x
   where
     getSubscript :: Int -> String
     getSubscript i | i < 0     = ""
-                   | i < 10    = (subs !! i) : []
+                   | i < 10    = [subs !! i]
                    | otherwise = getSubscript (i `div` 10) ++ getSubscript (i `mod` 10)
 
 -- A little naive check, but should be mostly functional
